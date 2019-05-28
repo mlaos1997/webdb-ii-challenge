@@ -3,13 +3,15 @@ const helmet = require('helmet');
 
 const server = express();
 
+const zoosRouter = require('./routes/zoosRouter.js');
+
 server.use(express.json());
 server.use(helmet());
 
-const port = 3300;
+server.use('/api/zoos', zoosRouter);
 
-server.listen(port, function () {
-    console.log(`\n=== Web API Listening on http://localhost:${port} ===\n`);
+server.get('/', (req, res) => {
+    res.send('<h1>Web DB II Challenge');
 });
 
 module.exports = server;

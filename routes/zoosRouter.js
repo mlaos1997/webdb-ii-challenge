@@ -15,7 +15,7 @@ const knexConfig = {
 const db = knex(knexConfig);
 
 // endpoints heres
-router.get('/api/zoos', (req, res) => {
+router.get('/', (req, res) => {
     db('zoos') // returns a promise with all the rows
         .then(response => {
         if (!response || Object.keys(response).length === 0) {
@@ -35,7 +35,7 @@ router.get('/api/zoos', (req, res) => {
     });
 });
 
-router.get('/api/zoos/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     db('zoos')
         .where({id: req.params.id})
         .first() // will return us an object instead of an array
@@ -57,7 +57,7 @@ router.get('/api/zoos/:id', (req, res) => {
         })
 });
 
-router.post('/api/zoos', (req, res) => {
+router.post('/', (req, res) => {
     // INSERT INTO Zoos (title) VALUES ('Slaughterhouse Five'); second argument for
     // insert is what we want returned from the promise, in this case we want the
     // name back
@@ -86,7 +86,7 @@ router.post('/api/zoos', (req, res) => {
         });
 });
 
-router.put('/api/zoos/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     db('zoos')
         .where({id: req.params.id})
         .update(req.body)
@@ -112,7 +112,7 @@ router.put('/api/zoos/:id', (req, res) => {
         });
 });
 
-router.delete('/api/zoos/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     db('zoos')
         .where({id: req.params.id})
         .delete(req.body)
